@@ -9,10 +9,8 @@ public class SkillNeedle : MonoBehaviour, ISkillEffect
 
 	public void Execute(PlayerID usePlayerID)
 	{
-		// ‘ŠèƒvƒŒƒCƒ„[‚ÌID‚ğæ“¾
-		PlayerID target = usePlayerID == PlayerID.Player_1P ? PlayerID.Player_2P : PlayerID.Player_1P;
 		// ‘Šè‘¤‚ÌPosition‚ğæ“¾
-		Vector3 targetPos = PlayerIDManager.Instance.GetPlayerPosition(target);
+		Vector3 targetPos = PlayerIDManager.Instance.GetPlayerPosition(PlayerID.Player_1P);
 
 		Instantiate(_needle, new Vector3(targetPos.x, _fallPos), Quaternion.identity);
 	}

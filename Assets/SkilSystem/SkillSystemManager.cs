@@ -26,33 +26,21 @@ public class SkillSystemManager : MonoBehaviour
 
 	void Update()
     {
-		if(!_isPause)
-		{
-			CheckPlayerInput(PlayerID.Player_1P);
-			CheckPlayerInput(PlayerID.Player_2P);
-		}
-    }
-
-	private void CheckPlayerInput(PlayerID playerID)
-	{
 		// スキルキー設定を構造体から取得
-		InputSkillKey config = SkillKeyConfig.GetConfig(playerID);
+		InputSkillKey config = SkillKeyConfig.GetConfig(PlayerID.Player_1P);
 
 		// 入力チェック
 		if (Input.GetKeyDown(config.LeftSkill))
 		{
-			Debug.Log($"{playerID}左のスキル");
-			_deckManager.TryActivate(playerID, SkillPosition.Left);
-		} 
+			_deckManager.TryActivate(SkillPosition.Left);
+		}
 		else if (Input.GetKeyDown(config.CenterSkill))
 		{
-			Debug.Log($"{playerID}中のスキル");
-			_deckManager.TryActivate(playerID, SkillPosition.Center);
+			_deckManager.TryActivate(SkillPosition.Center);
 		}
 		else if (Input.GetKeyDown(config.RightSkill))
 		{
-			Debug.Log($"{playerID}右のスキル");
-			_deckManager.TryActivate(playerID, SkillPosition.Right);
+			_deckManager.TryActivate(SkillPosition.Right);
 		}
 	}
 

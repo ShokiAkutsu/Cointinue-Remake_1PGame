@@ -12,7 +12,6 @@ public class SkillDeckManager : MonoBehaviour
 	Dictionary<SkillPosition, SkillSO> _openSkill = new Dictionary<SkillPosition, SkillSO>();
 	// 各プレイヤーの所持金参照
 	PlayerWalletManager _wallet1P;
-	PlayerWalletManager _wallet2P;
 
 	private void Awake()
 	{
@@ -26,7 +25,6 @@ public class SkillDeckManager : MonoBehaviour
 	{
 		PlayerIDManager playerIDManager = GameObject.FindObjectOfType<PlayerIDManager>();
 		_wallet1P = playerIDManager.GetPlayerComponent<PlayerWalletManager>(PlayerID.Player_1P);
-		_wallet2P = playerIDManager.GetPlayerComponent<PlayerWalletManager>(PlayerID.Player_2P);
 
 		// 初期手札を格納
 		DrawDeck(SkillPosition.Left);
@@ -60,29 +58,20 @@ public class SkillDeckManager : MonoBehaviour
 	/// <param name="skill"></param>
 	/// <param name="player"></param>
 	/// <returns></returns>
-    public void TryActivate(PlayerID player, SkillPosition skillPos)
+    public void TryActivate(SkillPosition skillPos)
     {
 		SkillSO skill = _openSkill[skillPos]; // 対応位置にあるスキルを格納
 
 		if (skill == null) return;
 
-		// 所持金からコストを差し引く
-		if(player == PlayerID.Player_1P)
-		{
-			// コスト未満なら終了
-			if (_wallet1P.CoinValue() - skill.Cost < 0) return;
+		
+		// コスト未満なら終了
+		if (_wallet1P.CoinValue() - skill.Cost < 0) return;
 
-			_wallet1P.SetWallet(-skill.Cost);
-		}
-		else
-		{
-			// コスト未満なら終了
-			if (_wallet2P.CoinValue() - skill.Cost < 0) return;
+		_wallet1P.SetWallet(-skill.Cost);
+		
 
-			_wallet2P.SetWallet(-skill.Cost);
-		}
-
-		ExecuteSkillEffect(skill, player); // スキルを発動する
+		ExecuteSkillEffect(skill); // スキルを発動する
 
 		_deck.Add(skill); // スキル効果発動後、山札の後ろに格納
 
@@ -94,7 +83,7 @@ public class SkillDeckManager : MonoBehaviour
 	/// </summary>
 	/// <param name="skill"></param>
 	/// <param name="player"></param>
-	private void ExecuteSkillEffect(SkillSO skill, PlayerID player)
+	private void ExecuteSkillEffect(SkillSO skill)
 	{
 		if (skill.SkillEffectPrefab == null) return;
 
@@ -102,7 +91,7 @@ public class SkillDeckManager : MonoBehaviour
 		ISkillEffect effect = skill.SkillEffectPrefab.GetComponent<ISkillEffect>();
 		if (effect != null)
 		{
-			effect.Execute(player);
+			effect.Execute(PlayerID.Player_1P);
 		}
 
 		// エフェクトの視覚表現用にインスタンス化（必要なら）

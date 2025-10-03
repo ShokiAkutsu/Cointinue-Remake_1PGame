@@ -11,8 +11,6 @@ public class SkillTraking : MonoBehaviour, ISkillEffect
 	{
 		GameObject traking = Instantiate(_traking, _position, Quaternion.identity);
 
-		PlayerID target = usePlayerID == PlayerID.Player_1P ? PlayerID.Player_2P : PlayerID.Player_1P;
-
-		traking.GetComponent<Traking>().FindTarget(target);
+		traking.GetComponent<Traking>().FindTarget(PlayerID.Player_1P);
 	}
 }

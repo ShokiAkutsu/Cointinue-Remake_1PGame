@@ -58,13 +58,12 @@ public class ContinueManager : MonoBehaviour
 		//獲得コインが必要金額未満ならゲームオーバー
 		else
 		{
-			PlayerID target = player == PlayerID.Player_1P ? PlayerID.Player_2P : PlayerID.Player_1P;
-			Vector3 targetPos = _playerManager.GetPlayerPosition(target);
+			Vector3 targetPos = _playerManager.GetPlayerPosition(PlayerID.Player_1P);
 
 			yield return new WaitForSeconds(0.5f);
 
 			_audio.PlayOneShot(_deadClip);
-			_gameOverEffect.StartEffect(targetPos, target); // シーン変更とエフェクト
+			_gameOverEffect.StartEffect(targetPos, PlayerID.Player_1P); // シーン変更とエフェクト
 		}
 	}
 

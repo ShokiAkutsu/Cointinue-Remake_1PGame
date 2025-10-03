@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CoinTextManager : MonoBehaviour
 {
 	[SerializeField] Text _player1Text;
-	[SerializeField] Text _player2Text;
+	//[SerializeField] Text _player2Text;
 
 	/// <summary>
 	/// PlayerID‚É‘Î‰‚µ‚½Š‹àUI‚ÌXV‚ğ‚·‚é
@@ -20,13 +20,6 @@ public class CoinTextManager : MonoBehaviour
 			if (_player1Text != null)
 			{
 				_player1Text.text = "Player 1: " + Value;
-			}
-		}
-		else if (playerID == PlayerID.Player_2P)
-		{
-			if (_player2Text != null)
-			{
-				_player2Text.text = "Player 2: " + Value;
 			}
 		}
 		else
