@@ -97,6 +97,7 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+<<<<<<< HEAD
 Assets/Images/keyboard_a_white.png
 Assets/Images/keyboard_a_white.png.meta
 Assets/Images/keyboard_d_white.png
@@ -474,3 +475,5 @@ Assets/Images/Bomb/bakuhatsu_01.png
 Assets/Images/Bomb/bakuhatsu_01.png.meta
 Assets/Images/Bomb/bakuhatsu_02.png
 Assets/Images/Bomb/bakuhatsu_02.png.meta
+=======
+>>>>>>> 7eaa18377ce530214ff66629633955af5456bebb
