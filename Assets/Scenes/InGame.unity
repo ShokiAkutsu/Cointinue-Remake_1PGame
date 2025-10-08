@@ -2139,6 +2139,7 @@ MonoBehaviour:
   _tagNames:
   - Ground
   - Gimmick
+  - Bar
 --- !u!1 &1343169434
 GameObject:
   m_ObjectHideFlags: 0
